@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using MovieArchiveApp.Models; // Models klasöründeki Movie'yi görmesini sağlar
+using MovieArchiveApp.Models; 
 
 namespace MovieArchiveApp.Data
 {
