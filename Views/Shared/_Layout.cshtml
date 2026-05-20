@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Film Arşiv Sistemi</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MovieArchiveApp.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body class="bg-dark text-light" style="margin-bottom: 70px;">
+    <header>
+        <nav class="navbar navbar-expand navbar-dark bg-secondary border-bottom box-shadow mb-3 shadow-sm">
+            <div class="container-fluid d-flex justify-content-start align-items-center">
+                <a class="navbar-brand fw-bold text-warning me-4" asp-area="" asp-controller="Movies" asp-action="Index">
+                    <i class="bi bi-film"></i> Film Arşivi
+                </a>
+                
+                <ul class="navbar-nav flex-row">
+                    <li class="nav-item">
+                        <a class="nav-link text-white me-3 fw-semibold" asp-area="" asp-controller="Movies" asp-action="Index">
+                            <i class="bi bi-house-door"></i> Ana Sayfa
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white me-3 fw-semibold" asp-area="" asp-controller="Movies" asp-action="Create">
+                            <i class="bi bi-plus-circle-fill text-success"></i> Film Ekle
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white fw-semibold" asp-area="" asp-controller="Movies" asp-action="TopRated">
+                            <i class="bi bi-trophy-fill text-warning"></i> IMDb Sıralaması
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted bg-secondary text-center py-3 position-fixed bottom-0 w-100" style="z-index: 1030;">
+        <div class="container text-white-50">
+            &copy; 2026 - Film Arşiv Sistemi - BIL 122 Ödevi 25120205009
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

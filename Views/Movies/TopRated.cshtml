@@ -1,0 +1,70 @@
+@model IEnumerable<MovieArchiveApp.Models.Movie>
+
+@{
+    ViewData["Title"] = "IMDb Sıralaması";
+}
+
+<div class="d-flex align-items-center mb-4">
+    <h2 class="text-warning mb-0"><i class="bi bi-trophy-fill me-2"></i> En Yüksek Puanlı Filmler</h2>
+</div>
+
+@if (Model == null || !Model.Any())
+{
+    <div class="alert alert-secondary bg-dark text-light border-secondary text-center p-5 rounded shadow">
+        <i class="bi bi-exclamation-circle text-warning fs-1 mb-3 d-block"></i>
+        <h4 class="text-warning">Sıralanacak Film Bulunamadı</h4>
+        <p class="text-muted">Veritabanında henüz kayıtlı film olmadığı için sıralama tablosu boş görünüyor.</p>
+        <a asp-action="Create" class="btn btn-warning fw-bold mt-2">
+            <i class="bi bi-plus-circle-fill me-1"></i> İlk Filmini Ekle
+        </a>
+    </div>
+}
+else
+{
+    <div class="bg-secondary rounded shadow p-3 mb-5">
+        <div class="table-responsive">
+            <table class="table table-dark table-striped table-hover align-middle mb-0">
+                <thead>
+                    <tr class="text-warning">
+                        <th style="width: 8%">Sıra</th>
+                        <th style="width: 12%">Afiş</th>
+                        <th>Film Adı</th>
+                        <th>Yönetmen</th>
+                        <th>Tür</th>
+                        <th>Yayın Yılı</th>
+                        <th class="text-end">IMDb Puanı</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ int rank = 1; }
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="fw-bold fs-5 text-white-50">#@rank</td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.ImagePath))
+                                {
+                                    <img src="@item.ImagePath" alt="@item.Title" class="rounded shadow-sm" style="width: 60px; height: 80px; object-fit: cover;">
+                                }
+                                else
+                                {
+                                    <div class="bg-dark text-muted d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 80px;">
+                                        <i class="bi bi-camera-reels"></i>
+                                    </div>
+                                }
+                            </td>
+                            <td class="fw-bold text-warning fs-5">@item.Title</td>
+                            <td>@item.Director</td>
+                            <td><span class="badge bg-dark text-info border border-info">@item.Genre</span></td>
+                            <td>@item.ReleaseYear</td>
+                            <td class="text-end fw-bold text-light fs-5">
+                                <i class="bi bi-star-fill text-warning me-1"></i> @item.Rating
+                            </td>
+                        </tr>
+                        rank++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

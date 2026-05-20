@@ -1,0 +1,54 @@
+@model MovieArchiveApp.Models.Movie
+
+@{
+    ViewData["Title"] = "Yeni Film Ekle";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6 border border-secondary p-4 rounded shadow bg-dark text-light">
+        <h4 class="mb-4 text-warning"><i class="bi bi-plus-circle-fill"></i> Yeni Film Ekle</h4>
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+            
+            <div class="mb-3">
+                <label asp-for="Title" class="form-label fw-semibold text-white"></label>
+                <input asp-for="Title" class="form-control bg-secondary text-white border-dark" placeholder="Örn: Inception" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Genre" class="form-label fw-semibold text-white"></label>
+                <input asp-for="Genre" class="form-control bg-secondary text-white border-dark" placeholder="Örn: Bilim Kurgu" />
+                <span asp-validation-for="Genre" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Director" class="form-label fw-semibold text-white"></label>
+                <input asp-for="Director" class="form-control bg-secondary text-white border-dark" placeholder="Örn: Christopher Nolan" />
+                <span asp-validation-for="Director" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="ReleaseYear" class="form-label fw-semibold text-white"></label>
+                    <input asp-for="ReleaseYear" class="form-control bg-secondary text-white border-dark" placeholder="Örn: 2010" />
+                    <span asp-validation-for="ReleaseYear" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Rating" class="form-label fw-semibold text-white"></label>
+                    <input asp-for="Rating" class="form-control bg-secondary text-white border-dark" step="0.1" placeholder="Örn: 8.8" />
+                    <span asp-validation-for="Rating" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label class="form-label fw-semibold text-white">Afiş Seçin</label>
+                <input type="file" name="imageFile" class="form-control bg-secondary text-white border-dark" accept="image/*" />
+            </div>
+            <div class="d-flex justify-content-between border-top border-secondary pt-3">
+                <a asp-action="Index" class="btn btn-outline-light">İptal</a>
+                <button type="submit" class="btn btn-warning fw-bold px-4">Kaydet</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
