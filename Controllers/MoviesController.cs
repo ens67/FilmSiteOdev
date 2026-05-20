@@ -16,7 +16,6 @@ namespace MovieArchiveApp.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        // GET: Movies (Ana Sayfa - Varsayılan Listeleme ve Arama)
         public async Task<IActionResult> Index(string searchString, string movieGenre)
         {
             IQueryable<string> genreQuery = from m in _context.Movies orderby m.Genre select m.Genre;
@@ -36,7 +35,7 @@ namespace MovieArchiveApp.Controllers
             return View(await movies.ToListAsync());
         }
 
-        // GET: Movies/TopRated
+
         public async Task<IActionResult> TopRated()
         {
             var sortedMovies = await _context.Movies
